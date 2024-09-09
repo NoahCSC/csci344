@@ -7,7 +7,7 @@
 body {
     font-family: "Poppins", sans-serif;
     color: #333;
-    background-color: snow;
+    background-color: lightgrey;
     margin: 0 auto;
     max-width: 1000px;
 }
@@ -35,12 +35,25 @@ header {
     grid-row-start: 1;
     grid-row-end: span 1;
 }
+header > p {
+    display: grid;
+    justify-content:space-between;
+    align-items: center;
+  }
+  nav > p{
+    display: grid;
+    justify-content: end;
+  }
+  #blue{
+    color: lightskyblue;
+  }
 
 nav {
     grid-column-start: 2;
     grid-column-end: span 1;
     grid-row-start: 2;
     grid-row-end: span 1;
+    background-color: snow;
 }
 
 aside {
