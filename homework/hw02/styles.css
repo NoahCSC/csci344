@@ -30,15 +30,21 @@ body {
 }
 
 header {
+    display: grid;
     grid-column-start: 1;
     grid-column-end: span 3;
     grid-row-start: 1;
     grid-row-end: span 1;
+    text-align: left;
+
 }
 header > p {
     display: grid;
     justify-content:space-between;
     align-items: center;
+    text-align: left;
+    word-wrap: break-word;
+   
   }
   nav > p{
     display: grid;
