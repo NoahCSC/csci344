@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+
 
 * {
   box-sizing: border-box;
@@ -13,7 +15,7 @@ body {
 }
 
 .item {
-    padding: 8px;
+   padding: 5px;
     background-color: white;
     border: 4px solid tomato;
     border-radius: 6px;
@@ -30,13 +32,20 @@ body {
 }
 
 header {
-    display: grid;
+    display: flex;
     grid-column-start: 1;
     grid-column-end: span 3;
     grid-row-start: 1;
     grid-row-end: span 1;
+    justify-content: space-between;
     text-align: left;
 
+}
+i{
+  font-size: 20px;
+}
+header > img{
+  border-radius: 20px;
 }
 header > p {
     display: grid;
@@ -49,6 +58,15 @@ header > p {
   nav > p{
     display: grid;
     justify-content: end;
+  }
+  main > img{
+    width: 75%;
+   
+  }
+  #left{
+    /* display: grid; */
+    justify-content: left;
+    margin-bottom: 5px;
   }
   #blue{
     color: lightskyblue;
@@ -77,6 +95,7 @@ section {
 }
 
 main {
+ justify-content: center;
     grid-column-start: 2;
     grid-column-end: span 1;
     grid-row-start: 3;
