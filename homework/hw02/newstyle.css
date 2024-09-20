@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 body * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: #333;
     background-color: lightgrey;
 }
@@ -47,6 +48,7 @@ nav > p{
     grid-row-end: span 1;
     justify-content: space-between;
     text-align: left;
+    font-family: "Comfortaa", sans-serif;
 
 }
 header > p {
@@ -75,6 +77,8 @@ header > img{
     /* display: grid; */
     justify-content: left;
     margin-bottom: 5px;
+    font-family: "Comfortaa", sans-serif;
+ 
   }
 .logo {
     font-size: 1em;
@@ -112,11 +116,14 @@ aside {
 #gray{
     color: rgb(105, 101, 101);
 }
+h1{
+    font-family: "Comfortaa", sans-serif;
+}
 #center{
     text-align: center;
     position: absolute;
-    bottom: 27.5em;
-    right: 7em;
+    bottom: 24em;
+    right: 5em;
 }
 aside > img{
     border-radius: 20px;
