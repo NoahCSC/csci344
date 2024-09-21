@@ -34,10 +34,12 @@ nav{
 }
 
 
+
 nav > p{
     display: grid;
     justify-content: end;
   }
+
 
   header {
     display: flex;
@@ -49,8 +51,10 @@ nav > p{
     justify-content: space-between;
     text-align: left;
     font-family: "Comfortaa", sans-serif;
+    
 
 }
+
 header > p {
     display: grid;
     justify-content:space-between;
@@ -73,12 +77,24 @@ header > img{
     color: rgb(36, 129, 186);
     text-align: right;
   }
+  #right{
+  
+   
+   align-items: end;
+    
+  }
+  #bold{
+    font-weight: bold;
+  }
   #left{
     /* display: grid; */
     justify-content: left;
     margin-bottom: 5px;
     font-family: "Comfortaa", sans-serif;
- 
+   
+  }
+  #small{
+    width: 60%;
   }
 .logo {
     font-size: 1em;
@@ -128,6 +144,7 @@ h1{
 aside > img{
     border-radius: 20px;
   }
+  
 
 main {
     background-color: snow;
