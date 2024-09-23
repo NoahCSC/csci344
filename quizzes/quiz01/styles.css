@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header,
+main,
+footer {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+header {
+    background-color: #013672;
+    display: flex;
+    justify-content: space-between;
+    
+}
+h1{
+    font-family: Passion One, sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+h2{
+    font-family: Passion One, sans-serif;
+    margin-top: 10px;
+}
+h3{
+    font-family: Passion One, sans-serif;
+}
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 20px;
+   justify-content: center;
+   
+  
+}
+section {
+   display: grid;
+   grid-template-columns: auto 150px;
+   border: solid 5px lightgreen;
+   
+
+}
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 20px;
+    
+}
+.card{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 20px; 
+    
+}
+
+section > img{
+    width: 100%;
+}
+a:link{
+    color: azure;
+    
+}
+a:link{
+    color: green;
+    
+}
+nav > a:link{
+    color: azure;
+
+    
+}
+nav > a:visited{
+    color: azure;
+   
+}
+
+
+header img,
+footer img {
+    width: 200px;
+}
+@media (max-width:800px) {
+    .cards{
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    nav{
+      display: none;
+    }
+  }
