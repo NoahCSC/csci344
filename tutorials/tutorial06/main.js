@@ -17,6 +17,7 @@
 //    to create one large HTML string.
 // 4. Clear out the existing courses in the DOM and insert
 //    the HTML string into the DOM.
+//test comment
 let searchTerm = "";
 const search = (ev) => {
     ev.preventDefault(); // overrides default button action
