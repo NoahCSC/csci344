@@ -17,12 +17,12 @@
 //    to create one large HTML string.
 // 4. Clear out the existing courses in the DOM and insert
 //    the HTML string into the DOM.
-
+let searchTerm = "";
 const search = (ev) => {
     ev.preventDefault(); // overrides default button action
 
     // Get user's preferences:
-    const searchTerm = document.querySelector("#search_term").value;
+     searchTerm = document.querySelector("#search_term").value;
     const openOnly = document.querySelector("#is_open").checked;
 
     // Pass the user's preferences into the showData function
@@ -32,19 +32,41 @@ const search = (ev) => {
 // Part 1.1a
 const filterClassFull = (course) => {
     // modify this
-    return true;
+    if(course.EnrollmentCurrent>=course.EnrollmentMax){
+        return true;
+    } else{
+        return false;
+    }
+    
 };
 
 // Part 1.1b
 const filterTermMatched = (course) => {
     // modify this
-    return true;
+    if(searchTerm.includes(course.Title) || searchTerm.includes(course.Code) || searchTerm.includes(course.CRN) || searchTerm.includes(course.Instructors.Username ) || searchTerm.includes(course.Hours)){
+        return true;
+    } else{
+        return false;
+    }
+   
 };
 
 // Part 1.2
 const dataToHTML = (course) => {
-    // modify this
-    return `Some HTML representation of the course...`;
+    let seats=course.EnrollmentCurrent-course.EnrollmentMax;
+  
+    return ` <section class="course">
+            <h2>${course.Code}${course.Title}</h2>
+            <p>
+                <i class="fa-solid fa-circle-check"></i> 
+                Open  &bull; 10174 &bull; Seats Available: ${seats}
+            </p>
+            <p>
+                ${course.Days} &bull; ZEI 201 &bull; ${course.Hours} credit hour(s)
+            </p>
+            <p><strong>${course.Instructors.Username}</strong></p>
+        </section>
+`;
 };
 
 // Part 2
@@ -52,4 +74,22 @@ const showData = (searchTerm, openOnly) => {
     console.log(searchTerm, openOnly);
     console.log(data); // imported from course-data.js
     // Your code here:
+   const h2 = document.getElementById("place");
+   const collection = document.getElementsByClassName("course");
+   for(let i=0; i<collection.length;i++){
+    collection[i].parentNode.removeChild(collection[i]);
+   }
+    const matches = data.filter(filterTermMatched);
+    console.log(matches);
+   const htmlarray= matches.map(dataToHTML);
+    console.log(htmlarray);
+    const bigarray = htmlarray.join('');
+    console.log(bigarray);
+    //const element = document.getElementById("c1");
+   // element.remove();
+   // const element1 = document.getElementById("c2");
+   // element1.remove();
+   
+    h2.insertAdjacentHTML("beforeend", bigarray);
+
 };
