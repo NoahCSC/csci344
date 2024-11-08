@@ -7,7 +7,10 @@ let password = "password";
 async function initializeScreen() {
     token = await getToken();
     showNav();
+    showAside();
     getPosts();
+    getSuggestions();
+    getStories();
 }
 
 async function getToken() {
@@ -26,9 +29,83 @@ function showNav() {
     `;
     
 }
+async function showAside() {
+    const response = await fetch("https://photo-app-secured.herokuapp.com/api/profile/", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const data = await response.json();
+    console.log(data);
+    document.querySelector("#header").innerHTML = `
+    <header id="header" class="flex gap-4 items-center">
+            <img src="${data.image_url}" class="rounded-full w-16" />
+            <h2 class="font-Comfortaa font-bold text-2xl">${data.username}</h2>
+        </header>
+    `;
+    
+}
+async function getStories() {
+    const response = await fetch("https://photo-app-secured.herokuapp.com/api/stories/", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const stories = await response.json();
+    console.log(stories);
+    showStories(stories);
+}
+function showStories(stories){
+const storyEl=document.querySelector("#story");
+stories.forEach(story => {
+const template = `
 
+ <div class="flex flex-col justify-center items-center">
+                <img src="${story.user.thumb_url}" class="rounded-full border-4 border-gray-300" />
+                <p class="text-xs text-gray-500">${story.user.username}</p>
+            </div>`;
+            storyEl.insertAdjacentHTML("beforeend", template); 
+})
+}
 // implement remaining functionality below:
+//await / async syntax:
+async function getSuggestions() {
+    const response = await fetch("https://photo-app-secured.herokuapp.com/api/suggestions/", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const suggestions = await response.json();
+    console.log(suggestions);
+    showSuggestions(suggestions);
+}
+function showSuggestions(suggestions){
+const asideEl= document.querySelector("#panel");
+suggestions.forEach(suggestion => {
+const template = `
+<section class="flex justify-between items-center mb-4 gap-2">
+                <img src="${suggestion.thumb_url}" class="rounded-full" />
+                <div class="w-[180px]">
+                    <p class="font-bold text-sm">${suggestion.username}</p>
+                    <p class="text-gray-500 text-xs">suggested for you</p>
+                </div>
+                <button class="text-blue-500 text-sm py-2">follow</button>
+            </section>
+            
+            `;
+            asideEl.insertAdjacentHTML("beforeend", template);
 
+
+
+
+})
+}
 async function getPosts() {
     const response = await fetch("https://photo-app-secured.herokuapp.com/api/posts/?limit=10", {
         method: "GET",

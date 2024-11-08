@@ -1,4 +1,12 @@
 .profile{
+    display: grid;
+    grid-template-columns: 100px auto;
+    gap: 20px;
     background-color: aqua;
     color: yellowgreen;
+    padding: 10px;
+    border-radius: 4px;
+}
+.profile h2{
+    margin: 0;
 }

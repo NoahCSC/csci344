@@ -1,5 +1,6 @@
 import React from "react";
 import Profile from  "./Profile.jsx";
+import "./App.css"
 export default function App() {
 
     return (
@@ -9,10 +10,12 @@ export default function App() {
             </header>
             <main>
                 <p>Hello React!</p>
-                <Profile name="Anita" />
-                <Profile name="Ben" />
-                <Profile name="Adwaina" />
-                <Profile name="Laciesha" />
+                <div className="people">
+                <Profile name="Anita" picture="https://picsum.photos/id/216/100/100" />
+<Profile name="Ben" picture="https://picsum.photos/id/217/100/100" />
+<Profile name="Adwaina" picture="https://picsum.photos/id/218/100/100" />
+<Profile name="Laciesha" picture="https://picsum.photos/id/219/100/100" />
+                </div>
             </main>
         </>
     );
