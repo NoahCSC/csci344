@@ -2,12 +2,12 @@ import React from "react";
 import Bookmark from "./Bookmark";
 import Like from "./Like";
 export default function Post({postData, token}) {
-console.log(postData);
+//console.log(postData);
     return (
         <section className="bg-white border mb-10">
             <div className="p-4 flex justify-between">
                 <h3 className="text-lg font-Comfortaa font-bold">{postData.user.username}</h3>
-                <button className="icon-button"><i class="fas fa-ellipsis-h"></i></button>
+                <button className="icon-button"><i className="fas fa-ellipsis-h"></i></button>
             </div>
             <img src={postData.image_url} alt={postData.alt_text || "Post Photo"} width="300" height="300"
                 className="w-full bg-cover" />
@@ -15,7 +15,7 @@ console.log(postData);
                 <div className="flex justify-between text-2xl mb-3">
                     <div className="flex gap-2">
                       
-                        <Like likeId={postData.current_user_like_id} />
+                        <Like likeId={postData.current_user_like_id} postId={postData.id} token={token} />
                         <button><i className="far fa-comment"></i></button>
                         <button><i className="far fa-paper-plane"></i></button>
                     </div>
@@ -29,7 +29,7 @@ console.log(postData);
                     <p className="flex gap-2">
                         <strong>{postData.user.username}</strong>
                         {postData.caption}
-                       <button class="button">more</button>
+                       <button className="button">more</button>
                     </p>
                 </div>
                 <p className="flex gap-2 text-sm mb-3">
