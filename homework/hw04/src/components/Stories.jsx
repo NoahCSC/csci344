@@ -6,7 +6,7 @@ export default function Stories({ token }) {
 
     async function getStories() {
         const data = await getDataFromServer(token, "/api/stories");
-        console.log(data);
+       // console.log(data);
         setStories(data);
     }
 
@@ -17,15 +17,17 @@ export default function Stories({ token }) {
 //     return <Post token={token} key={postObj.id} postData={postObj} />
 // }
 
-console.log(stories);
+//console.log(stories);
 
 // JSON.stringify(storyEl);
 //storyEl.join('');
 function outputStory(storyObj) {
     return <Story key={storyObj.id} story={storyObj} />;
   }
-  return (  <header className="flex gap-6 bg-white border p-2 overflow-hidden mb-6">
-  <div>{stories.map(outputStory)}</div>
+  //flex gap-6
+  return (  
+  <header className="flex gap-6 bg-white border p-2 overflow-hidden mb-6">
+  {stories.map(outputStory)}
   </header>
 );
 }

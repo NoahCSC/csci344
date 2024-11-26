@@ -20,8 +20,8 @@ export default function Like({token, likeId, postId}){
         setStateLikeId(null);
     }
     if(likeId){
-        return (  <button onClick={deleteLike}><i className="fas text-red-700 fa-heart"></i></button>);
+        return (  <button aria-label="Unlike this post." aria-checked="true" ariaRole="toggle" onClick={deleteLike}><i className="fas text-red-700 fa-heart"></i></button>);
     } else {
-    return (  <button onClick={createLike}><i className="far fa-heart"></i></button>);
+    return (  <button aria-label="Like this post." aria-checked="false" ariaRole="toggle" onClick={createLike}><i className="far fa-heart"></i></button>);
     }
 }

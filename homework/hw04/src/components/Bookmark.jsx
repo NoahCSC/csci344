@@ -19,8 +19,8 @@ async function deleteBookmark() {
     setStateBookmarkId(null);
 }
     if(stateBookmarkId){
-    return (<button onClick={deleteBookmark}><i className="fas fa-bookmark"></i></button>);
+    return (<button aria-label="Unbookmark this post." aria-checked="true" ariaRole="toggle" onClick={deleteBookmark}><i className="fas fa-bookmark"></i></button>);
     } else {
-        return (<button onClick={createBookmark}><i className="far fa-bookmark"></i></button>);
+        return (<button aria-label="Bookmark this post." aria-checked="false" ariaRole="toggle" onClick={createBookmark}><i className="far fa-bookmark"></i></button>);
     }
 }
