@@ -14,11 +14,27 @@ class BookmarksListEndpoint(Resource):
 
     def get(self):
         # TODO: Add GET Logic...
+        # Send query
+        # SELECT * FROM bookmarks where user_id=12;
+       
+        bookmarks = Bookmark.query.filter_by(user_id=self.current_user.id).all()
+        if(bookmarks is None):
+                return Response(
+                json.dumps({"Message": f"The user has not bookmarked any posts."}),
+                mimetype="application/json",
+                status=404,
+            )
+        
+            
+
+        data = [item.to_dict() for item in bookmarks]
         return Response(
-            json.dumps([]),
-            mimetype="application/json",
-            status=200,
-        )
+                json.dumps(data),
+                mimetype="application/json",
+                status=200,
+            )
+       
+        
 
     def post(self):
         # TODO: Add POST Logic...

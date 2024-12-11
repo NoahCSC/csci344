@@ -39,7 +39,7 @@ class PostListEndpoint(Resource):
     def post(self):
         # : handle POST logic
         data = request.json
-        print(data)
+        #print(data)
         image_url = data.get("image_url")
         caption = data.get("caption")
         alt_text = data.get("alt_text")
@@ -62,24 +62,76 @@ class PostDetailEndpoint(Resource):
         self.current_user = current_user
 
     def patch(self, id):
-        print("POST id=", id)
-        # TODO: Add PATCH logic...
-        return Response(json.dumps({}), mimetype="application/json", status=200)
+        #print("POST id=", id)
+        # : Add PATCH logic...
+        data = request.json
+        #print(data)
+        post = Post.query.get(id)
+        if(post is None):
+            return Response(
+            json.dumps({"Message": f"Post id={id} not found."}),
+            mimetype="application/json",
+            status=404,
+        )
+
+        #post.image_url = 'https://picsum.photos/600/430?id=443'
+        if(post.user_id==self.current_user.id):
+            if data.get("caption"):
+                post.caption = data.get("caption")
+
+            if data.get("alt_text"):
+                post.alt_text = data.get("alt_text")
+            if data.get("image_url"):
+                post.image_url = data.get("image_url")
+            db.session.commit()
+            return Response(json.dumps(post.to_dict(user=self.current_user)), mimetype="application/json", status=200) 
+       
+            
+
+        # commit changes:
+         
+        return Response(
+            json.dumps({"Message": f"Post id={id} unauthorized."}),
+            mimetype="application/json",
+            status=404,
+        )
+        
+    
 
     def delete(self, id):
-        print("POST id=", id)
-
-        # TODO: Add DELETE logic...
-        return Response(
-            json.dumps({}),
+        #print("POST id=", id)
+        post = Post.query.get(id) 
+        if(post is None):
+            return Response(
+            json.dumps({"Message": f"Post id={id} not found."}),
             mimetype="application/json",
-            status=200,
+            status=404,
+        )
+        if(post.user_id==self.current_user.id):
+            Post.query.filter_by(id=id).delete()
+            db.session.commit()
+            return Response(
+                json.dumps({"Message": f"Post id={id} deleted."}),
+                mimetype="application/json",
+                status=200,
+            )
+
+        # Post.query.filter_by(id).delete()
+       
+
+        # should return None
+        # : Add DELETE logic...
+        return Response(
+            json.dumps({"Message": f"Post id={id} unauthorized."}),
+            mimetype="application/json",
+            status=404,
         )
 
     def get(self, id):
-        print("POST id=", id)
+        #print("POST id=", id)
         # : Add GET logic...
         can_view = can_view_post(id, self.current_user)
+        post = Post.query.get(id)
         if(can_view):
             post = Post.query.get(id)
             return Response(
@@ -88,13 +140,17 @@ class PostDetailEndpoint(Resource):
              status=200,
               ) 
               
-        else:
+        elif(post is None):
             return Response(
              json.dumps({"Message": f"Post id={id} not found."}),
              mimetype="application/json",
              status=404,
               )
-                   
+        return Response(
+            json.dumps({"Message": f"Post id={id} unauthorized."}),
+             mimetype="application/json",
+            status=404,
+        )          
 
 
 
